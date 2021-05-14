@@ -1,0 +1,15 @@
+    public String authenticate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        final String NEGOTIATE = "Negotiate";
+        final String HEADER_AUTHENTICATE = "WWW-Authenticate";
+        final String AUTHORIZATION = "authorization";
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        if(authorizationHeader == null || authorizationHeader.trim().isEmpty()) {
+            response.setHeader(HEADER_AUTHENTICATE, NEGOTIATE);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return NEGOTIATE;
+        }
+
+        final byte[] token = Base64.decode(authorizationHeader.substring("Negotiate".length()));
+        Subject clientSubject = kerberosTest.loginImpl(token, null);
+        return "Kerberos Principal is -> " + clientSubject.getPrincipals().toArray()[0].toString();
+    }

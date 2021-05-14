@@ -1,0 +1,7 @@
+public String authenticate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String userName = request.getParameter("CN");
+        if(userName != null) {
+            return "<b>" + userName +",</b> Welcome to eQ Security";
+        }
+        return "YOU ARE NOT AUTHORIZED !<br><br> Why don't you ask Big-IP to get your CN value?";
+    }

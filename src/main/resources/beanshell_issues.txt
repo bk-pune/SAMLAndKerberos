@@ -1,0 +1,4 @@
+BeanShell Issues-
+- If default constructor is defined explicitly, then it considers it as a normal method and expects return type - which ends up in error.
+- Generics are not supported by BeanShell. https://github.com/beanshell/beanshell/issues/22
+- Latest development is not on Apache license. https://github.com/pejobo/beanshell2
